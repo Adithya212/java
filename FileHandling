@@ -1,0 +1,26 @@
+/file copy using reader and writer
+import java.io.*;
+public class file {
+    public static void main (String args[])
+    {
+      try
+      {
+          FileReader reader = new FileReader("input.txt");
+          FileWriter writer = new FileWriter("out.txt");
+          FileWriter w =new FileWriter("input.txt");
+          //writing in input file for reading
+          writer.write("hello java");
+          //copying contents to output file
+          int i;
+          while((i=reader.read())!=-1)
+          {
+              writer.write(i);
+          }
+          writer.close();
+          reader.close();
+      }
+      catch (IOException e){
+          System.out.println("exception");
+      }
+    }
+}
