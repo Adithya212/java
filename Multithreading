@@ -1,0 +1,61 @@
+import java.util.*;
+
+class Square extends Thread{
+    int x;
+   Square(int n)
+   {
+       x=n;
+   }
+   public void run()
+   {
+       int sqr=x*x;
+       System.out.println("square is"+sqr);
+   }
+}
+class Cube extends Thread{
+    int x;
+    Cube(int n)
+    {
+        x=n;
+    }
+    public void run()
+    {
+        int cub=x*x*x;
+        System.out.println("cube is"+cub);
+    }
+}
+class Number extends Thread
+{
+    Random rd=new Random();
+    public void run()
+    {
+        for(int i=0;i<10;i++)
+        {
+            int a= rd.nextInt(100);
+            System.out.println("generater num is"+a);
+            Square s=new Square(a);
+            Cube c=new Cube(a);
+            if(a%2==0)
+            {
+                s.start();
+            }
+            else
+                c.start();
+            try{
+               Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                System.out.println(e);
+            }
+        }
+
+    }
+}
+public class Mthread {
+    public static void main(String args[])
+    {
+        Number n=new Number();
+        n.start();
+    }
+}
