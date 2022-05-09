@@ -1,0 +1,19 @@
+import java.util.*;
+class garb
+{
+    public void finalize()
+    {
+        System.out.println("gar collected");
+    }
+}
+  class garbage
+  {
+    public static void main(String args[])
+    {
+        garb g=new garb();
+        g=null;
+
+        System.gc();
+
+    }
+}
