@@ -1,0 +1,60 @@
+import java.util.*;
+class Table {
+     void print(int n)
+    {
+        int i=0;
+        while((i++)<5)
+        {
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e)
+            {
+                System.out.println("opps");
+            }
+            synchronized (this)
+            {System.out.println(n*i);}
+
+        }
+
+
+    }
+}
+class t1 extends Thread
+{
+    Table t;
+    t1(Table t)
+    {
+        this.t=t;
+    }
+    public void run()
+
+    {
+        t.print(5);
+    }
+
+}
+class t2 extends Thread
+{
+    Table t;
+    t2(Table t)
+    {
+        this.t=t;
+    }
+    public void run()
+    {
+        t.print(3);
+    }
+
+}
+class  synch
+{
+    public static void main(String args[])
+    {
+        Table t=new Table();
+        t1 a=new t1(t);
+        t2 b=new t2(t);
+        a.start();
+        b.start();
+    }
+}
