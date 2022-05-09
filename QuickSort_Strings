@@ -1,0 +1,61 @@
+import java.util.*;
+
+
+public class QuickString {
+    String names[];//=new String[50];
+    int length;
+    int i,j;
+
+
+    public static void main(String args[]) {
+
+        QuickString obj = new QuickString();
+        String list[] = {"Quick","Sort","is","my","program"};
+        obj.qsort(list);
+
+        for (String i : list) {
+            System.out.print(i);
+            System.out.print(" ");
+        }
+    }
+    void qsort(String array[])
+        {
+            if(array==null || array.length==0)
+                return;
+            this.names=array;
+            this.length=array.length;
+            quicksort(0,length-1);
+        }
+
+    void quicksort(int lower,int higher) {
+        i = lower;
+        j = higher;
+        String pivot = this.names[(lower + (higher - lower) / 2)];
+        while (i <= j) {
+            while (this.names[i].compareToIgnoreCase(pivot) < 0)
+                i++;
+            while (this.names[j].compareToIgnoreCase(pivot) > 0)
+                j--;
+            if (i <= j) {
+                exchangename(i, j);
+                i++;
+                j--;
+            }
+        }
+        if (lower < j) {
+            quicksort(lower, j);
+        }
+        if (i < higher)
+            quicksort(i, higher);
+    }
+    void exchangename(int i,int j)
+    {
+        String temp=this.names[i];
+        this.names[i]=this.names[j];
+        this.names[j]=temp;
+    }
+    }
+
+
+
+
